@@ -37,7 +37,7 @@ export function Button({
   type?: "button" | "submit";
   onClick?: () => void;
 }) {
-  const cls = `group inline-flex items-center justify-center gap-2.5 rounded-lg font-semibold tracking-tight transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 ${VARIANTS[variant]} ${SIZES[size]} ${className}`;
+  const cls = `group inline-flex items-center justify-center gap-2.5 whitespace-nowrap rounded-lg font-semibold tracking-tight transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 ${VARIANTS[variant]} ${SIZES[size]} ${className}`;
 
   const Icon =
     icon === "arrow" ? ArrowRight : icon === "whatsapp" ? null : icon ?? null;

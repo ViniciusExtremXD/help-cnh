@@ -35,20 +35,20 @@ export function Header() {
   return (
     <>
       {/* Top bar */}
-      <div className="hidden bg-navy-900 text-[13px] text-slate-300 md:block">
+      <div className="hidden whitespace-nowrap bg-navy-900 text-[13px] text-slate-300 md:block">
         <div className="container-x flex h-10 items-center justify-between">
           <div className="flex items-center gap-6">
             <span className="inline-flex items-center gap-2">
               <MapPin size={14} className="text-brand-400" />
               Atendimento em todo o Brasil
             </span>
-            <span className="inline-flex items-center gap-2">
+            <span className="hidden items-center gap-2 lg:inline-flex">
               <ShieldCheck size={14} className="text-brand-400" />
               Assessoria administrativa especializada em trânsito
             </span>
           </div>
           <div className="flex items-center gap-6">
-            <span className="hidden items-center gap-2 lg:inline-flex">
+            <span className="hidden items-center gap-2 xl:inline-flex">
               <Clock size={14} className="text-brand-400" />
               Resposta rápida pelo WhatsApp
             </span>
@@ -75,13 +75,13 @@ export function Header() {
             <Logo className={`transition-all duration-300 ${scrolled ? "h-12" : "h-[3.75rem]"}`} />
           </a>
 
-          <nav aria-label="Principal" className="hidden lg:block">
+          <nav aria-label="Principal" className="hidden xl:block">
             <ul className="flex items-center gap-1">
               {NAV_LINKS.map((l) => (
                 <li key={l.id}>
                   <a
                     href={`#${l.id}`}
-                    className={`relative block px-3.5 py-2 text-[14.5px] font-semibold transition-colors ${
+                    className={`relative block whitespace-nowrap px-3.5 py-2 text-[14.5px] font-semibold transition-colors ${
                       active === l.id ? "text-navy-900" : "text-slate-500 hover:text-navy-900"
                     }`}
                   >
@@ -115,7 +115,7 @@ export function Header() {
               aria-expanded={open}
               aria-controls="menu-mobile"
               aria-label={open ? "Fechar menu" : "Abrir menu"}
-              className="grid h-11 w-11 place-items-center rounded-lg border border-slate-200 text-navy-900 lg:hidden"
+              className="grid h-11 w-11 place-items-center rounded-lg border border-slate-200 text-navy-900 xl:hidden"
             >
               {open ? <X size={20} /> : <Menu size={20} />}
             </button>
@@ -131,7 +131,7 @@ export function Header() {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="overflow-hidden border-t border-slate-200 bg-white lg:hidden"
+              className="overflow-hidden border-t border-slate-200 bg-white xl:hidden"
             >
               <div className="container-x py-3">
                 {NAV_LINKS.map((l) => (
