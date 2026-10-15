@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    background: #070a12;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6.5rem;
+  }
+
+  body {
+    @apply bg-obsidian font-sans text-white/90 antialiased;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: rgba(16, 185, 129, 0.35);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid #34d399;
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  .text-emerald-grad {
+    background: linear-gradient(100deg, #6ee7b7 0%, #10b981 45%, #059669 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-metal {
+    background: linear-gradient(100deg, #e2e8f0 0%, #94a3b8 30%, #6ee7b7 65%, #10b981 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-amber-grad {
+    background: linear-gradient(100deg, #fde68a 0%, #f59e0b 60%, #d97706 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .glass {
+    @apply border border-white/[0.08] bg-white/[0.03] backdrop-blur-xl;
+  }
+
+  .mask-fade-x {
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  .mask-radial {
+    mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  }
+
+  /* Border-only glow layer: paints the background only on a 1px ring. */
+  .ring-mask {
+    padding: 1px;
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  .perspective {
+    perspective: 1000px;
+  }
+
+  /* Border beams: a conic light that orbits the element (paint below an inset content layer). */
+  .beam-white {
+    background: conic-gradient(
+      from var(--beam-angle),
+      transparent 0 62%,
+      rgba(255, 255, 255, 0.95) 80%,
+      transparent 92%
+    );
+    animation: beam-rotate 3s linear infinite;
+  }
+
+  .beam-emerald {
+    background: conic-gradient(
+      from var(--beam-angle),
+      rgba(255, 255, 255, 0.08) 0 62%,
+      rgba(52, 211, 153, 0.95) 80%,
+      rgba(255, 255, 255, 0.08) 92%
+    );
+    animation: beam-rotate 3.4s linear infinite;
+  }
+
+  .beam-panorama {
+    background: conic-gradient(
+      from var(--beam-angle),
+      rgba(255, 255, 255, 0.06) 0 50%,
+      #10b981 68%,
+      #f59e0b 80%,
+      rgba(255, 255, 255, 0.06) 92%
+    );
+    animation: beam-rotate 7s linear infinite;
+  }
+}
+
+@property --beam-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes beam-rotate {
+  to {
+    --beam-angle: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
