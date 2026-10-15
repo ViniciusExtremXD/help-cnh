@@ -9,33 +9,32 @@ export function WhatsAppFab() {
   const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
-    const id = window.setTimeout(() => setBubble(true), 3000);
+    const id = window.setTimeout(() => setBubble(true), 4000);
     return () => window.clearTimeout(id);
   }, []);
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.4, y: 40 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ type: "spring", stiffness: 200, damping: 14, delay: 1 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 1, duration: 0.5 }}
       className="fixed bottom-5 right-5 z-50 flex items-end gap-3 sm:bottom-7 sm:right-7"
     >
       <AnimatePresence>
         {bubble && !dismissed && (
           <motion.div
-            initial={{ opacity: 0, x: 20, scale: 0.8 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            exit={{ opacity: 0, x: 20, scale: 0.8 }}
-            transition={{ type: "spring", stiffness: 240, damping: 18 }}
-            className="relative mb-2 hidden max-w-[230px] rounded-2xl rounded-br-sm border border-emerald-400/25 bg-midnight/95 py-3 pl-4 pr-9 text-[13px] font-medium leading-snug text-white shadow-[0_20px_50px_-15px_rgba(16,185,129,0.6)] backdrop-blur-xl sm:block"
+            initial={{ opacity: 0, x: 12 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 12 }}
+            className="relative mb-1.5 hidden max-w-[240px] rounded-xl rounded-br-sm border border-slate-200 bg-white py-3 pl-4 pr-9 text-[13px] leading-snug text-slate-600 shadow-lift sm:block"
           >
-            <span className="mr-1.5 inline-block h-2 w-2 animate-pulse rounded-full bg-emerald-400 align-middle" />
-            Especialista online: analise sua CNH agora
+            <span className="block font-semibold text-navy-900">Especialista online</span>
+            Envie sua notificação e receba uma análise.
             <button
               type="button"
               onClick={() => setDismissed(true)}
               aria-label="Fechar aviso"
-              className="absolute right-2 top-2 grid h-6 w-6 place-items-center rounded-full text-white/50 hover:bg-white/10 hover:text-white"
+              className="absolute right-2 top-2 grid h-6 w-6 place-items-center rounded-full text-slate-400 hover:bg-slate-100 hover:text-navy-900"
             >
               <X size={13} />
             </button>
@@ -43,29 +42,16 @@ export function WhatsAppFab() {
         )}
       </AnimatePresence>
 
-      <motion.a
+      <a
         href={waLink()}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Falar com um especialista no WhatsApp"
-        whileHover={{ scale: 1.1, rotate: -6 }}
-        whileTap={{ scale: 0.9 }}
-        className="relative grid h-16 w-16 place-items-center rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 text-white shadow-[0_10px_40px_-5px_rgba(16,185,129,0.8)]"
+        className="relative grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-[0_10px_30px_-8px_rgba(37,211,102,0.8)] transition-transform hover:scale-105"
       >
-        <span className="absolute inset-0 animate-ping rounded-full bg-emerald-400/50" />
-        <motion.span
-          className="absolute inset-0 rounded-full border-2 border-emerald-300/60"
-          animate={{ scale: [1, 1.7], opacity: [0.7, 0] }}
-          transition={{ duration: 2, repeat: Infinity, delay: 0.6 }}
-        />
-        <motion.span
-          className="relative inline-flex"
-          animate={{ rotate: [0, -14, 14, -8, 0] }}
-          transition={{ duration: 1, repeat: Infinity, repeatDelay: 2.5 }}
-        >
-          <WhatsAppIcon size={30} />
-        </motion.span>
-      </motion.a>
+        <span className="absolute inset-0 animate-ping rounded-full bg-[#25D366] opacity-30 [animation-duration:2.4s]" />
+        <WhatsAppIcon size={28} className="relative" />
+      </a>
     </motion.div>
   );
 }

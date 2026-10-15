@@ -10,8 +10,8 @@ export function waLink(message: string = DEFAULT_MESSAGE) {
 
 export const NAV_LINKS = [
   { id: "servicos", label: "Serviços" },
-  { id: "urgencias", label: "Situações de Urgência" },
-  { id: "diferenciais", label: "Diferenciais" },
-  { id: "como-funciona", label: "Como Funciona" },
+  { id: "diferenciais", label: "Por que a Help" },
+  { id: "urgencias", label: "Urgências" },
+  { id: "como-funciona", label: "Como funciona" },
   { id: "duvidas", label: "Dúvidas" },
 ] as const;

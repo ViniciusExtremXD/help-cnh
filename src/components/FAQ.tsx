@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { CircleHelp, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import { waLink } from "../config";
-import { riseWithDelay, viewport } from "../lib/motion";
-import { CTAButton } from "./CTAButton";
-import { Reveal } from "./Reveal";
-import { SectionHeading } from "./SectionHeading";
+import { PHOTOS } from "../data/photos";
+import { Button } from "./ui/Button";
+import { Photo } from "./ui/Photo";
+import { Reveal, RevealGroup, fadeUp } from "./ui/Reveal";
+import { SectionTitle } from "./ui/SectionTitle";
 
 const FAQS = [
   {
@@ -14,11 +15,11 @@ const FAQS = [
   },
   {
     q: "Quem teve a CNH suspensa pode continuar dirigindo durante o recurso?",
-    a: "Sim! Enquanto o processo estiver em fase de recurso administrativo, a penalidade fica em efeito suspensivo e o motorista pode dirigir normalmente até a decisão final. Por isso é fundamental protocolar a defesa dentro do prazo indicado na notificação.",
+    a: "Sim. Enquanto o processo estiver em fase de recurso administrativo, a penalidade fica em efeito suspensivo e o motorista pode dirigir normalmente até a decisão final. Por isso é fundamental protocolar a defesa dentro do prazo indicado na notificação.",
   },
   {
     q: "Fui pego no bafômetro ou recusei o teste. Vou perder minha CNH automaticamente?",
-    a: "Não. Seja pelo resultado do etilômetro (Art. 165) ou pela recusa ao teste (Art. 165-A), todo motorista tem direito à ampla defesa e ao contraditório em três instâncias administrativas — Defesa Prévia, JARI e CETRAN — antes de qualquer bloqueio definitivo. Analisamos cada detalhe do procedimento para construir a sua defesa.",
+    a: "Não. Seja pelo resultado do etilômetro (Art. 165) ou pela recusa ao teste (Art. 165-A), todo motorista tem direito à ampla defesa e ao contraditório em três instâncias administrativas — Defesa Prévia, JARI e CETRAN — antes de qualquer bloqueio definitivo.",
   },
   {
     q: "Para quem é destinado o serviço da Help Soluções e CNH?",
@@ -34,44 +35,52 @@ export function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="duvidas" className="relative py-24 sm:py-32">
-      <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
-        <div className="lg:sticky lg:top-32 lg:self-start">
-          <SectionHeading
-            align="left"
-            eyebrow="Dúvidas Frequentes"
-            icon={CircleHelp}
-            title="Perguntas reais de *motoristas* reais"
-            text="Respostas diretas, sem juridiquês. Se a sua dúvida não estiver aqui, chame a gente."
+    <section id="duvidas" className="bg-slate-50 py-20 sm:py-28">
+      <div className="container-x grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+        <div className="lg:sticky lg:top-28 lg:self-start">
+          <SectionTitle
+            kicker="Dúvidas frequentes"
+            title="Respostas diretas, sem juridiquês."
+            text="Separamos as perguntas que mais recebemos dos motoristas. Se a sua não estiver aqui, fale com a gente."
           />
-          <Reveal delay={0.4} className="mt-8">
-            <CTAButton
-              href={waLink("Olá! Tenho uma dúvida sobre a minha CNH.")}
-              external
-              icon="whatsapp"
-              variant="glass"
-              size="md"
-            >
-              Tirar minha dúvida no WhatsApp
-            </CTAButton>
+          <Reveal delay={0.15} className="mt-10 overflow-hidden rounded-2xl bg-navy-900">
+            <div className="grid sm:grid-cols-[0.9fr_1.1fr] lg:grid-cols-1 xl:grid-cols-[0.9fr_1.1fr]">
+              <Photo
+                id={PHOTOS.headset}
+                alt="Atendente da equipe de suporte"
+                ratio={0.75}
+                widths={[480, 720]}
+                sizes="(min-width: 1280px) 260px, (min-width: 1024px) 480px, 50vw"
+                className="h-full max-h-60 w-full object-cover sm:max-h-none lg:max-h-56 xl:max-h-none"
+              />
+              <div className="p-6 sm:p-7">
+                <p className="font-display text-lg font-bold text-white">Ainda com dúvida?</p>
+                <p className="mt-2 text-sm leading-relaxed text-slate-300">
+                  Um especialista responde pelo WhatsApp e explica as opções para o seu caso.
+                </p>
+                <Button
+                  href={waLink("Olá! Tenho uma dúvida sobre a minha CNH.")}
+                  external
+                  icon="whatsapp"
+                  size="md"
+                  className="mt-5"
+                >
+                  Tirar minha dúvida
+                </Button>
+              </div>
+            </div>
           </Reveal>
         </div>
 
-        <ul className="space-y-3">
+        <RevealGroup className="space-y-3">
           {FAQS.map((f, i) => {
             const isOpen = open === i;
             return (
-              <motion.li
+              <motion.div
                 key={f.q}
-                variants={riseWithDelay(i * 0.08)}
-                initial="hidden"
-                whileInView="show"
-                whileHover="hover"
-                viewport={viewport}
-                className={`overflow-hidden rounded-2xl border transition-colors duration-300 ${
-                  isOpen
-                    ? "border-emerald-400/30 bg-emerald-400/[0.05] shadow-[0_0_40px_-16px_rgba(16,185,129,0.7)]"
-                    : "border-white/[0.08] bg-white/[0.03] hover:border-white/15"
+                variants={fadeUp}
+                className={`rounded-xl border bg-white transition-shadow duration-300 ${
+                  isOpen ? "border-brand-500/60 shadow-card" : "border-slate-200"
                 }`}
               >
                 <h3>
@@ -81,21 +90,16 @@ export function FAQ() {
                     aria-expanded={isOpen}
                     aria-controls={`faq-a-${i}`}
                     onClick={() => setOpen(isOpen ? null : i)}
-                    className="flex w-full items-center gap-4 p-5 text-left sm:p-6"
+                    className="flex w-full items-center gap-5 px-6 py-5 text-left"
                   >
-                    <span className="font-mono text-xs text-emerald-400/80">0{i + 1}</span>
-                    <span className="flex-1 font-display text-base font-semibold text-white sm:text-[17px]">{f.q}</span>
-                    <motion.span
-                      animate={{ rotate: isOpen ? 135 : 0 }}
-                      transition={{ type: "spring", stiffness: 260, damping: 16 }}
-                      className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border ${
-                        isOpen
-                          ? "border-emerald-400/50 bg-emerald-400 text-obsidian"
-                          : "border-white/15 text-white/70"
+                    <span className="flex-1 text-base font-bold text-navy-900 sm:text-[17px]">{f.q}</span>
+                    <span
+                      className={`grid h-8 w-8 shrink-0 place-items-center rounded-full transition-all duration-300 ${
+                        isOpen ? "rotate-45 bg-brand-500 text-navy-900" : "bg-slate-100 text-navy-900"
                       }`}
                     >
-                      <Plus size={16} strokeWidth={2.4} />
-                    </motion.span>
+                      <Plus size={17} strokeWidth={2.4} />
+                    </span>
                   </button>
                 </h3>
                 <AnimatePresence initial={false}>
@@ -107,22 +111,17 @@ export function FAQ() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ type: "spring", stiffness: 180, damping: 24 }}
+                      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                      className="overflow-hidden"
                     >
-                      <motion.p
-                        initial={{ y: -8, filter: "blur(4px)" }}
-                        animate={{ y: 0, filter: "blur(0px)" }}
-                        className="px-5 pb-6 pl-[3.25rem] text-[15px] leading-relaxed text-white/65 sm:px-6 sm:pl-[3.6rem]"
-                      >
-                        {f.a}
-                      </motion.p>
+                      <p className="px-6 pb-6 text-[15px] leading-relaxed text-slate-600">{f.a}</p>
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </motion.li>
+              </motion.div>
             );
           })}
-        </ul>
+        </RevealGroup>
       </div>
     </section>
   );

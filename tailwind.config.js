@@ -4,53 +4,42 @@ export default {
   theme: {
     extend: {
       colors: {
-        obsidian: "#070A12",
-        midnight: "#0D1322",
+        // Taken from the Help Soluções e CNH logo.
+        navy: {
+          950: "#060C13",
+          900: "#09121B",
+          800: "#0E1A27",
+          700: "#152536",
+          600: "#22374D",
+        },
+        brand: {
+          50: "#E8FBF2",
+          100: "#C9F5E1",
+          400: "#2EDB93",
+          500: "#0ACF7D",
+          600: "#08B36B",
+          700: "#06864F",
+        },
+        signal: {
+          50: "#FFF5E8",
+          400: "#FFAC3D",
+          500: "#FF9A1A",
+          700: "#B45309",
+        },
       },
       fontFamily: {
         display: ['"Plus Jakarta Sans Variable"', "system-ui", "sans-serif"],
         sans: ['"Inter Variable"', "system-ui", "sans-serif"],
-        mono: ['"JetBrains Mono Variable"', "ui-monospace", "monospace"],
+      },
+      boxShadow: {
+        card: "0 1px 2px rgba(9,18,27,0.04), 0 8px 24px -12px rgba(9,18,27,0.12)",
+        lift: "0 2px 4px rgba(9,18,27,0.04), 0 24px 48px -20px rgba(9,18,27,0.28)",
       },
       keyframes: {
-        marquee: {
-          from: { transform: "translateX(0)" },
-          to: { transform: "translateX(-50%)" },
+        "slide-progress": {
+          from: { transform: "scaleX(0)" },
+          to: { transform: "scaleX(1)" },
         },
-        "marquee-reverse": {
-          from: { transform: "translateX(-50%)" },
-          to: { transform: "translateX(0)" },
-        },
-        shimmer: {
-          "0%": { transform: "translateX(-160%) skewX(-12deg)" },
-          "35%, 100%": { transform: "translateX(320%) skewX(-12deg)" },
-        },
-        "glow-pulse": {
-          "0%, 100%": {
-            boxShadow: "0 0 0 0 rgba(16,185,129,0), 0 10px 30px -12px rgba(16,185,129,.55)",
-          },
-          "50%": {
-            boxShadow: "0 0 0 6px rgba(16,185,129,.12), 0 12px 42px -8px rgba(16,185,129,.85)",
-          },
-        },
-        "grid-pulse": {
-          "0%, 100%": { opacity: "0.35" },
-          "50%": { opacity: "0.7" },
-        },
-        "grid-flow": {
-          from: { backgroundPosition: "0 0" },
-          to: { backgroundPosition: "0 64px" },
-        },
-      },
-      animation: {
-        marquee: "marquee 38s linear infinite",
-        "marquee-reverse": "marquee-reverse 46s linear infinite",
-        shimmer: "shimmer 3s ease-in-out infinite",
-        "glow-pulse": "glow-pulse 2.6s ease-in-out infinite",
-        "grid-pulse": "grid-pulse 6s ease-in-out infinite",
-        "grid-flow": "grid-flow 3s linear infinite",
-        "spin-slow": "spin 4s linear infinite",
-        "spin-radar": "spin 3.2s linear infinite",
       },
     },
   },

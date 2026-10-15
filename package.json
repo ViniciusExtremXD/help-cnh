@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.1.1",
-    "@fontsource-variable/jetbrains-mono": "^5.1.2",
     "@fontsource-variable/plus-jakarta-sans": "^5.1.1",
     "framer-motion": "^11.18.2",
     "lucide-react": "^0.468.0",
