@@ -1,8 +1,8 @@
-// TODO: substituir pelo número oficial de WhatsApp da Help Soluções e CNH (formato: 55 + DDD + número).
+// TODO: substituir pelo número oficial de WhatsApp da Help Soluções em CNH (formato: 55 + DDD + número).
 export const WHATSAPP_NUMBER = "5500000000000";
 
 export const DEFAULT_MESSAGE =
-  "Olá, Help Soluções e CNH! Gostaria de uma análise do meu caso.";
+  "Olá, Help Soluções em CNH! Gostaria de uma análise do meu caso.";
 
 export function waLink(message: string = DEFAULT_MESSAGE) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;

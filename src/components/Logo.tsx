@@ -6,7 +6,7 @@ export function Logo({ onDark = false, className = "h-11" }: { onDark?: boolean;
   return (
     <img
       src={onDark ? logoDark : logoLight}
-      alt="Help Soluções e CNH"
+      alt="Help Soluções em CNH"
       width={488}
       height={200}
       className={`w-auto select-none ${className}`}

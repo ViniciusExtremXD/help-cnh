@@ -71,7 +71,7 @@ export function Header() {
         }`}
       >
         <div className={`container-x flex items-center justify-between gap-6 transition-all duration-300 ${scrolled ? "h-[72px]" : "h-[88px]"}`}>
-          <a href="#topo" aria-label="Help Soluções e CNH — início" className="shrink-0">
+          <a href="#topo" aria-label="Help Soluções em CNH — início" className="shrink-0">
             <Logo className={`transition-all duration-300 ${scrolled ? "h-12" : "h-[3.75rem]"}`} />
           </a>
 

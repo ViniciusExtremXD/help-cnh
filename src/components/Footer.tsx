@@ -83,13 +83,13 @@ export function Footer() {
       <div className="border-t border-white/10">
         <div className="container-x py-8">
           <p className="text-xs leading-relaxed text-slate-500">
-            <strong className="font-semibold text-slate-300">Aviso legal:</strong> a Help Soluções e CNH é uma empresa de
+            <strong className="font-semibold text-slate-300">Aviso legal:</strong> a Help Soluções em CNH é uma empresa de
             prestação de serviços e assessoria administrativa especializada em demandas de trânsito. Não somos órgão
             público e não possuímos vínculo com DETRAN, CONTRAN, JARI, CETRAN ou demais órgãos de trânsito. Cada caso é
             analisado individualmente e o resultado depende da decisão dos órgãos competentes.
           </p>
           <div className="mt-6 flex flex-col items-start justify-between gap-4 text-xs sm:flex-row sm:items-center">
-            <p>© {new Date().getFullYear()} Help Soluções e CNH. Todos os direitos reservados.</p>
+            <p>© {new Date().getFullYear()} Help Soluções em CNH. Todos os direitos reservados.</p>
             <a href="#topo" className="inline-flex items-center gap-2 font-semibold text-slate-300 hover:text-white">
               Voltar ao topo
               <ArrowUp size={14} />

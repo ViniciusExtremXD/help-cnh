@@ -81,7 +81,7 @@ export function About() {
 
           <div>
             <SectionTitle
-              kicker="Por que a Help Soluções e CNH"
+              kicker="Por que a Help Soluções em CNH"
               title="Defesa técnica, linguagem simples e zero burocracia."
               text="Unimos conhecimento da legislação de trânsito com um atendimento próximo, para que você entenda cada passo e continue focado no que importa."
             />

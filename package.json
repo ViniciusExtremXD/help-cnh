@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Help Soluções e CNH — landing page de defesa do motorista",
+  "description": "Help Soluções em CNH — landing page de defesa do motorista",
   "scripts": {
     "dev": "vite --port 5174",
     "build": "tsc --noEmit && vite build",
