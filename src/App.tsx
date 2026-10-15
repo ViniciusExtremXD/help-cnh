@@ -1,10 +1,10 @@
 import { About } from "./components/About";
 import { Contact } from "./components/Contact";
+import { Coverage } from "./components/Coverage";
 import { FAQ } from "./components/FAQ";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { HeroCarousel } from "./components/HeroCarousel";
-import { Location } from "./components/Location";
 import { Process } from "./components/Process";
 import { QuickTriage } from "./components/QuickTriage";
 import { Services } from "./components/Services";
@@ -25,7 +25,7 @@ export default function App() {
         <Urgency />
         <Process />
         <FAQ />
-        <Location />
+        <Coverage />
         <Contact />
       </main>
       <Footer />

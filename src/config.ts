@@ -19,12 +19,7 @@ export const REGIONS = [
   "Campinas",
 ] as const;
 
-// TODO: endereço provisório (o mapa aponta para a Av. Paulista até o cliente confirmar a localização).
-export const ADDRESS = {
-  street: "Avenida Paulista",
-  city: "São Paulo – SP",
-  mapsQuery: "Avenida Paulista, São Paulo - SP",
-};
+// TODO: o cliente ainda não confirmou se terá sede física; quando houver endereço, exibir no rodapé.
 
 export const NAV_LINKS = [
   { id: "servicos", label: "Serviços" },
@@ -32,5 +27,5 @@ export const NAV_LINKS = [
   { id: "urgencias", label: "Urgências" },
   { id: "como-funciona", label: "Como funciona" },
   { id: "duvidas", label: "Dúvidas" },
-  { id: "localizacao", label: "Onde estamos" },
+  { id: "localizacao", label: "Onde atuamos" },
 ] as const;
