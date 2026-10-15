@@ -21,7 +21,6 @@ export function SectionTitle({
   return (
     <RevealGroup className={`${center ? "mx-auto max-w-3xl text-center" : "max-w-2xl"} ${className}`}>
       <motion.p variants={fadeUp} className={dark ? "kicker-dark" : "kicker"}>
-        <span className={`h-px w-6 ${dark ? "bg-brand-400" : "bg-brand-600"}`} />
         {kicker}
       </motion.p>
       <motion.h2

@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
-import { ArrowRight, type LucideIcon } from "lucide-react";
-import { WhatsAppIcon } from "../WhatsAppIcon";
+import { ArrowRight, WhatsappLogo, type Icon as PhosphorIcon } from "@phosphor-icons/react";
 
 type Variant = "primary" | "dark" | "outline" | "outline-light";
 
@@ -31,28 +30,28 @@ export function Button({
   children: ReactNode;
   variant?: Variant;
   size?: keyof typeof SIZES;
-  icon?: "arrow" | "whatsapp" | LucideIcon | null;
+  icon?: "arrow" | "whatsapp" | PhosphorIcon | null;
   external?: boolean;
   className?: string;
   type?: "button" | "submit";
   onClick?: () => void;
 }) {
-  const cls = `group inline-flex items-center justify-center gap-2.5 whitespace-nowrap rounded-lg font-semibold tracking-tight transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 ${VARIANTS[variant]} ${SIZES[size]} ${className}`;
+  const cls = `group/btn inline-flex items-center justify-center gap-2.5 whitespace-nowrap rounded-lg font-semibold tracking-tight transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 ${VARIANTS[variant]} ${SIZES[size]} ${className}`;
 
-  const Icon =
-    icon === "arrow" ? ArrowRight : icon === "whatsapp" ? null : icon ?? null;
-  const iconEl =
+  const lead =
     icon === "whatsapp" ? (
-      <WhatsAppIcon size={18} className="transition-transform duration-300 group-hover:scale-110" />
-    ) : Icon ? (
-      <Icon size={17} strokeWidth={2.2} className="transition-transform duration-300 group-hover:translate-x-1" />
+      <WhatsappLogo size={20} weight="fill" className="transition-transform duration-300 group-hover/btn:-rotate-12 group-hover/btn:scale-110" />
     ) : null;
+  const TrailIcon = icon === "arrow" ? ArrowRight : icon === "whatsapp" ? null : icon;
+  const trail = TrailIcon ? (
+    <TrailIcon size={17} weight="bold" className="transition-transform duration-300 group-hover/btn:translate-x-1" />
+  ) : null;
 
   const content = (
     <>
-      {icon === "whatsapp" && iconEl}
+      {lead}
       <span>{children}</span>
-      {icon !== "whatsapp" && iconEl}
+      {trail}
     </>
   );
 

@@ -8,10 +8,18 @@ export function waLink(message: string = DEFAULT_MESSAGE) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
 
+// TODO: endereço provisório (o mapa aponta para a Av. Paulista até o cliente confirmar a localização).
+export const ADDRESS = {
+  street: "Avenida Paulista",
+  city: "São Paulo – SP",
+  mapsQuery: "Avenida Paulista, São Paulo - SP",
+};
+
 export const NAV_LINKS = [
   { id: "servicos", label: "Serviços" },
   { id: "diferenciais", label: "Por que a Help" },
   { id: "urgencias", label: "Urgências" },
   { id: "como-funciona", label: "Como funciona" },
   { id: "duvidas", label: "Dúvidas" },
+  { id: "localizacao", label: "Onde estamos" },
 ] as const;

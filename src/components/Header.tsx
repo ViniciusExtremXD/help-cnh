@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Clock, MapPin, Menu, ShieldCheck, X } from "lucide-react";
+import { Clock, List, MapPin, ShieldCheck, WhatsappLogo, X } from "@phosphor-icons/react";
 import { NAV_LINKS, waLink } from "../config";
 import { Logo } from "./Logo";
 import { Button } from "./ui/Button";
-import { WhatsAppIcon } from "./WhatsAppIcon";
 
 function useActiveSection() {
   const [active, setActive] = useState("");
@@ -39,17 +38,17 @@ export function Header() {
         <div className="container-x flex h-10 items-center justify-between">
           <div className="flex items-center gap-6">
             <span className="inline-flex items-center gap-2">
-              <MapPin size={14} className="text-brand-400" />
+              <MapPin size={15} weight="fill" className="text-brand-400" />
               Atendimento em todo o Brasil
             </span>
             <span className="hidden items-center gap-2 lg:inline-flex">
-              <ShieldCheck size={14} className="text-brand-400" />
+              <ShieldCheck size={15} weight="fill" className="text-brand-400" />
               Assessoria administrativa especializada em trânsito
             </span>
           </div>
           <div className="flex items-center gap-6">
             <span className="hidden items-center gap-2 xl:inline-flex">
-              <Clock size={14} className="text-brand-400" />
+              <Clock size={15} weight="fill" className="text-brand-400" />
               Resposta rápida pelo WhatsApp
             </span>
             <a
@@ -58,7 +57,7 @@ export function Header() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 font-semibold text-white transition-colors hover:text-brand-400"
             >
-              <WhatsAppIcon size={15} className="text-brand-400" />
+              <WhatsappLogo size={16} weight="fill" className="text-brand-400" />
               Fale com um especialista
             </a>
           </div>
@@ -117,7 +116,7 @@ export function Header() {
               aria-label={open ? "Fechar menu" : "Abrir menu"}
               className="grid h-11 w-11 place-items-center rounded-lg border border-slate-200 text-navy-900 xl:hidden"
             >
-              {open ? <X size={20} /> : <Menu size={20} />}
+              {open ? <X size={20} weight="bold" /> : <List size={22} weight="bold" />}
             </button>
           </div>
         </div>

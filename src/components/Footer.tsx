@@ -1,7 +1,6 @@
-import { ArrowUp, MapPin, ShieldCheck } from "lucide-react";
-import { NAV_LINKS, waLink } from "../config";
+import { ArrowUp, MapPin, ShieldCheck, WhatsappLogo } from "@phosphor-icons/react";
+import { ADDRESS, NAV_LINKS, waLink } from "../config";
 import { Logo } from "./Logo";
-import { WhatsAppIcon } from "./WhatsAppIcon";
 
 const SERVICES = [
   "CNH Suspensa ou Cassada",
@@ -64,16 +63,16 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 transition-colors hover:text-white"
               >
-                <WhatsAppIcon size={18} className="text-brand-400" />
+                <WhatsappLogo size={18} weight="fill" className="shrink-0 text-brand-400" />
                 WhatsApp — plantão de atendimento
               </a>
             </li>
             <li className="flex items-center gap-3">
-              <MapPin size={18} className="text-brand-400" />
-              Atendimento digital em todo o Brasil
+              <MapPin size={18} weight="fill" className="shrink-0 text-brand-400" />
+              {ADDRESS.street}, {ADDRESS.city} · atendimento digital em todo o Brasil
             </li>
             <li className="flex items-center gap-3">
-              <ShieldCheck size={18} className="text-brand-400" />
+              <ShieldCheck size={18} weight="fill" className="shrink-0 text-brand-400" />
               Assessoria administrativa em trânsito
             </li>
           </ul>
@@ -92,7 +91,7 @@ export function Footer() {
             <p>© {new Date().getFullYear()} Help Soluções em CNH. Todos os direitos reservados.</p>
             <a href="#topo" className="inline-flex items-center gap-2 font-semibold text-slate-300 hover:text-white">
               Voltar ao topo
-              <ArrowUp size={14} />
+              <ArrowUp size={14} weight="bold" />
             </a>
           </div>
         </div>

@@ -1,26 +1,30 @@
 import { motion } from "framer-motion";
-import { BellRing, MessagesSquare, Star, Truck, type LucideIcon } from "lucide-react";
+import { BellRinging, ChatsCircle, Star, Truck, type Icon } from "@phosphor-icons/react";
 import { waLink } from "../config";
 import { PHOTOS } from "../data/photos";
 import { Button } from "./ui/Button";
 import { CountUp } from "./ui/CountUp";
+import { IconBadge, type IconMotion } from "./ui/IconBadge";
 import { Photo } from "./ui/Photo";
 import { Reveal, RevealGroup, fadeUp } from "./ui/Reveal";
 import { SectionTitle } from "./ui/SectionTitle";
 
-const PILLARS: { icon: LucideIcon; title: string; text: string }[] = [
+const PILLARS: { icon: Icon; motion: IconMotion; title: string; text: string }[] = [
   {
     icon: Truck,
+    motion: "drive",
     title: "Zero burocracia e logística facilitada",
     text: "Esqueça filas e dores de cabeça no DETRAN. Cuidamos de todo o processo administrativo e, se necessário, retiramos a documentação na sua casa ou trabalho.",
   },
   {
-    icon: MessagesSquare,
+    icon: ChatsCircle,
+    motion: "pop",
     title: "Falamos a sua língua, sem juridiquês",
     text: "Explicamos cada etapa da sua defesa de forma direta, humana e sem jargões complicados.",
   },
   {
-    icon: BellRing,
+    icon: BellRinging,
+    motion: "swing",
     title: "Transparência em tempo real",
     text: "Você nunca fica no escuro: todos os andamentos do seu processo são notificados no seu WhatsApp ou e-mail.",
   },
@@ -42,18 +46,18 @@ export function About() {
           <Reveal className="relative pb-10 sm:pb-12 lg:pb-0">
             <div className="overflow-hidden rounded-2xl bg-slate-200">
               <Photo
-                id={PHOTOS.consulting}
-                alt="Especialista atendendo um cliente"
+                id={PHOTOS.consultantSmile}
+                alt="Consultora da equipe em escritório em São Paulo"
                 ratio={0.8}
                 widths={[640, 960, 1280]}
                 sizes="(min-width: 1024px) 600px, 100vw"
-                className="aspect-[5/4] w-full object-cover"
+                className="aspect-[5/4] w-full object-cover object-top"
               />
             </div>
             <div className="absolute -bottom-2 right-4 hidden w-[42%] overflow-hidden rounded-xl border-[6px] border-white bg-slate-200 shadow-lift sm:block lg:-bottom-10 lg:-right-6">
               <Photo
-                id={PHOTOS.support}
-                alt="Atendente em ligação com cliente"
+                id={PHOTOS.highwaySigns}
+                alt="Rodovia brasileira com placas de sinalização"
                 ratio={1}
                 widths={[320, 480, 640]}
                 sizes="260px"
@@ -73,7 +77,7 @@ export function About() {
               <p className="text-sm font-medium text-slate-500">motoristas atendidos</p>
               <div className="mt-2 flex gap-0.5 text-signal-500">
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} size={14} fill="currentColor" strokeWidth={0} />
+                  <Star key={i} size={14} weight="fill" />
                 ))}
               </div>
             </motion.div>
@@ -85,12 +89,14 @@ export function About() {
               title="Defesa técnica, linguagem simples e zero burocracia."
               text="Unimos conhecimento da legislação de trânsito com um atendimento próximo, para que você entenda cada passo e continue focado no que importa."
             />
-            <RevealGroup className="mt-10 space-y-6">
+            <RevealGroup className="mt-10 space-y-3">
               {PILLARS.map((p) => (
-                <motion.div key={p.title} variants={fadeUp} className="group flex gap-5">
-                  <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-navy-900 text-brand-400 transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-navy-900">
-                    <p.icon size={22} />
-                  </span>
+                <motion.div
+                  key={p.title}
+                  variants={fadeUp}
+                  className="group -mx-4 flex gap-5 rounded-2xl p-4 transition-all duration-300 hover:bg-slate-50 hover:shadow-card"
+                >
+                  <IconBadge icon={p.icon} motion={p.motion} />
                   <div>
                     <h3 className="text-lg font-bold">{p.title}</h3>
                     <p className="mt-1.5 text-[15px] leading-relaxed text-slate-600">{p.text}</p>
@@ -98,7 +104,7 @@ export function About() {
                 </motion.div>
               ))}
             </RevealGroup>
-            <Reveal delay={0.2} className="mt-10">
+            <Reveal delay={0.2} className="mt-8">
               <Button href={waLink("Olá! Gostaria de falar com a equipe da Help.")} external variant="dark" icon="whatsapp">
                 Falar com a equipe
               </Button>

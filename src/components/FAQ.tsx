@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Plus } from "lucide-react";
+import { Plus } from "@phosphor-icons/react";
 import { waLink } from "../config";
 import { PHOTOS } from "../data/photos";
 import { Button } from "./ui/Button";
@@ -46,12 +46,12 @@ export function FAQ() {
           <Reveal delay={0.15} className="mt-10 overflow-hidden rounded-2xl bg-navy-900">
             <div className="grid sm:grid-cols-[0.9fr_1.1fr] lg:grid-cols-1 xl:grid-cols-[0.9fr_1.1fr]">
               <Photo
-                id={PHOTOS.headset}
-                alt="Atendente da equipe de suporte"
+                id={PHOTOS.consultantDesk}
+                alt="Consultora da equipe pronta para atender"
                 ratio={0.75}
                 widths={[480, 720]}
                 sizes="(min-width: 1280px) 260px, (min-width: 1024px) 480px, 50vw"
-                className="h-full max-h-60 w-full object-cover sm:max-h-none lg:max-h-56 xl:max-h-none"
+                className="h-full max-h-60 w-full object-cover object-top sm:max-h-none lg:max-h-56 xl:max-h-none"
               />
               <div className="p-6 sm:p-7">
                 <p className="font-display text-lg font-bold text-white">Ainda com dúvida?</p>
@@ -98,7 +98,7 @@ export function FAQ() {
                         isOpen ? "rotate-45 bg-brand-500 text-navy-900" : "bg-slate-100 text-navy-900"
                       }`}
                     >
-                      <Plus size={17} strokeWidth={2.4} />
+                      <Plus size={17} weight="bold" />
                     </span>
                   </button>
                 </h3>

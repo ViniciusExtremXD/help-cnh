@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { X } from "lucide-react";
+import { WhatsappLogo, X } from "@phosphor-icons/react";
 import { waLink } from "../config";
-import { WhatsAppIcon } from "./WhatsAppIcon";
 
 export function WhatsAppFab() {
   const [bubble, setBubble] = useState(false);
@@ -36,7 +35,7 @@ export function WhatsAppFab() {
               aria-label="Fechar aviso"
               className="absolute right-2 top-2 grid h-6 w-6 place-items-center rounded-full text-slate-400 hover:bg-slate-100 hover:text-navy-900"
             >
-              <X size={13} />
+              <X size={13} weight="bold" />
             </button>
           </motion.div>
         )}
@@ -50,7 +49,7 @@ export function WhatsAppFab() {
         className="relative grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-[0_10px_30px_-8px_rgba(37,211,102,0.8)] transition-transform hover:scale-105"
       >
         <span className="absolute inset-0 animate-ping rounded-full bg-[#25D366] opacity-30 [animation-duration:2.4s]" />
-        <WhatsAppIcon size={28} className="relative" />
+        <WhatsappLogo size={30} weight="fill" className="relative" />
       </a>
     </motion.div>
   );

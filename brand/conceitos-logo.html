@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Help Soluções em CNH — Propostas de logo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Saira:ital,wdth,wght@0,50..125,100..900;1,50..125,100..900&family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --navy: #09121b;
+        --ink: #0b1622;
+        --muted: #5b6b7c;
+        --line: #e3e8ee;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, sans-serif;
+        color: var(--ink);
+        background: #f4f6f8;
+      }
+      header {
+        background: var(--navy);
+        color: #fff;
+        padding: 48px 24px 40px;
+      }
+      header .wrap,
+      main {
+        max-width: 1120px;
+        margin: 0 auto;
+      }
+      header p {
+        color: #9fb0c2;
+        max-width: 640px;
+        line-height: 1.6;
+        margin: 10px 0 0;
+      }
+      h1 {
+        margin: 0;
+        font-size: 28px;
+      }
+      main {
+        padding: 32px 24px 64px;
+        display: grid;
+        gap: 32px;
+      }
+      .concept {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        overflow: hidden;
+      }
+      .concept-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: baseline;
+        padding: 22px 28px;
+        border-bottom: 1px solid var(--line);
+      }
+      .concept-head h2 {
+        margin: 0;
+        font-size: 20px;
+      }
+      .concept-head span {
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .tag {
+        font-size: 12px;
+        font-weight: 700;
+        color: #06864f;
+        background: #e8fbf2;
+        border-radius: 999px;
+        padding: 4px 10px;
+        white-space: nowrap;
+      }
+      .boards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      .board {
+        display: grid;
+        place-items: center;
+        min-height: 300px;
+        padding: 32px;
+      }
+      .board.dark {
+        background: var(--navy);
+      }
+      .board.light {
+        background: #fff;
+        border-left: 1px solid var(--line);
+      }
+      .board svg {
+        width: 100%;
+        max-width: 460px;
+        height: auto;
+      }
+      .uses {
+        display: flex;
+        gap: 18px;
+        align-items: center;
+        padding: 18px 28px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 13px;
+        flex-wrap: wrap;
+      }
+      .uses .chip {
+        width: 56px;
+        height: 56px;
+        border-radius: 14px;
+        background: var(--navy);
+        display: grid;
+        place-items: center;
+      }
+      .uses .chip.round {
+        border-radius: 50%;
+      }
+      .uses .chip.white {
+        background: #fff;
+        border: 1px solid var(--line);
+      }
+      .uses svg {
+        width: 44px;
+        height: 44px;
+      }
+      p.note {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+      @media (max-width: 760px) {
+        .boards {
+          grid-template-columns: 1fr;
+        }
+        .board.light {
+          border-left: 0;
+          border-top: 1px solid var(--line);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <h1>Help Soluções em CNH — 3 propostas de logo</h1>
+        <p>
+          Todas seguem o DNA da marca atual: velocímetro em gradiente laranja → verde ("sinal verde"), "H" itálico com
+          ponteiro e tipografia pesada e inclinada. Cada proposta aparece em fundo escuro e claro, com o ícone reduzido
+          para redes sociais e favicon.
+        </p>
+      </div>
+    </header>
+
+    <main id="app"></main>
+
+    <script>
+      const ORANGE = [255, 138, 26];
+      const GREEN = [10, 207, 125];
+      const rad = (d) => (d * Math.PI) / 180;
+      // Same color logic as the original: green at the top-right, orange at the bottom-left.
+      const colorAt = (deg) => {
+        const t = (Math.cos(rad(deg - 315)) + 1) / 2;
+        const c = ORANGE.map((o, i) => Math.round(o + (GREEN[i] - o) * t));
+        return `rgb(${c.join(",")})`;
+      };
+      const pt = (cx, cy, r, deg) => [cx + r * Math.cos(rad(deg)), cy + r * Math.sin(rad(deg))];
+      const arc = (cx, cy, r, a0, a1) => {
+        const [x0, y0] = pt(cx, cy, r, a0);
+        const [x1, y1] = pt(cx, cy, r, a1);
+        const large = a1 - a0 > 180 ? 1 : 0;
+        return `M${x0.toFixed(2)} ${y0.toFixed(2)} A${r} ${r} 0 ${large} 1 ${x1.toFixed(2)} ${y1.toFixed(2)}`;
+      };
+
+      // Segmented gauge ring + inner ticks.
+      function gauge(cx, cy, r, { from = 240, to = 510, segments = 7, width = 13, gap = 3, tail = true } = {}) {
+        let out = "";
+        const step = (to - from) / segments;
+        for (let i = 0; i < segments; i++) {
+          const a0 = from + i * step + gap / 2;
+          const a1 = from + (i + 1) * step - gap / 2;
+          const w = tail && i === segments - 1 ? width * 0.55 : width;
+          out += `<path d="${arc(cx, cy, r, a0, a1)}" fill="none" stroke="${colorAt((a0 + a1) / 2)}" stroke-width="${w}" stroke-linecap="butt"/>`;
+        }
+        for (let d = 0; d < 360; d += 22.5) {
+          const long = d % 45 === 0;
+          const [x0, y0] = pt(cx, cy, r - 22, d);
+          const [x1, y1] = pt(cx, cy, r - (long ? 11 : 15), d);
+          out += `<line x1="${x0.toFixed(1)}" y1="${y0.toFixed(1)}" x2="${x1.toFixed(1)}" y2="${y1.toFixed(1)}" stroke="${colorAt(d)}" stroke-width="${long ? 4 : 3}" stroke-linecap="round"/>`;
+        }
+        return out;
+      }
+
+      // Italic H with a needle crossing it (as in the original mark).
+      function hNeedle(cx, cy, size, fill) {
+        const s = size / 120;
+        return `
+          <text x="${cx}" y="${cy + 42 * s}" text-anchor="middle" font-family="Saira" font-style="italic" font-weight="900"
+            font-size="${size}" fill="${fill}" style="font-variation-settings:'wdth' 112">H</text>
+          <polygon fill="${fill}" points="${cx - 88 * s},${cy + 30 * s} ${cx + 52 * s},${cy - 14 * s} ${cx + 46 * s},${cy + 6 * s}"/>`;
+      }
+
+      function wordmark(x, y, fg, { anchor = "start", size = 104, sub = 25 } = {}) {
+        return `
+          <text x="${x}" y="${y}" text-anchor="${anchor}" font-family="Saira" font-style="italic" font-weight="900"
+            font-size="${size}" fill="${fg}" letter-spacing="-1" style="font-variation-settings:'wdth' 112">HELP</text>
+          <text x="${x}" y="${y + sub * 1.75}" text-anchor="${anchor}" font-family="Saira" font-style="italic" font-weight="600"
+            font-size="${sub}" fill="${fg}" letter-spacing="${sub * 0.16}" style="font-variation-settings:'wdth' 125">SOLUÇÕES EM CNH</text>`;
+      }
+
+      function shield(cx, cy, w, h) {
+        const top = cy - h / 2;
+        const path = `M${cx} ${top} L${cx + w / 2} ${top + h * 0.16} L${cx + w / 2} ${top + h * 0.52}
+          C${cx + w / 2} ${top + h * 0.8} ${cx + w * 0.22} ${top + h * 0.94} ${cx} ${top + h}
+          C${cx - w * 0.22} ${top + h * 0.94} ${cx - w / 2} ${top + h * 0.8} ${cx - w / 2} ${top + h * 0.52}
+          L${cx - w / 2} ${top + h * 0.16} Z`;
+        return `
+          <defs><linearGradient id="sg${cx}${cy}" x1="0" y1="1" x2="1" y2="0">
+            <stop offset="0" stop-color="rgb(${ORANGE})"/><stop offset=".5" stop-color="#B5C430"/><stop offset="1" stop-color="rgb(${GREEN})"/>
+          </linearGradient></defs>
+          <path d="${path}" fill="none" stroke="url(#sg${cx}${cy})" stroke-width="12" stroke-linejoin="round"/>`;
+      }
+
+      const CONCEPTS = [
+        {
+          name: "1 · Velocímetro",
+          tag: "Evolução da atual",
+          desc: "A logo de hoje redesenhada em vetor: anel segmentado mais limpo, ponteiro integrado ao H e textos alinhados.",
+          art: (fg) => `<svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg">
+              ${gauge(120, 120, 96)}
+              ${hNeedle(120, 120, 128, fg)}
+              ${wordmark(250, 140, fg)}
+            </svg>`,
+          icon: (fg) => `<svg viewBox="0 0 240 240">${gauge(120, 120, 96)}${hNeedle(120, 120, 128, fg)}</svg>`,
+        },
+        {
+          name: "2 · Selo",
+          tag: "Vertical",
+          desc: "Versão empilhada, centralizada: funciona como selo em documentos, fachada, perfil de redes sociais e materiais impressos.",
+          art: (fg) => `<svg viewBox="0 0 440 400" xmlns="http://www.w3.org/2000/svg">
+              ${gauge(220, 120, 100, { from: 135, to: 405, segments: 9, width: 12, tail: false })}
+              ${hNeedle(220, 120, 132, fg)}
+              ${wordmark(220, 320, fg, { anchor: "middle", size: 92, sub: 22 })}
+            </svg>`,
+          icon: (fg) => `<svg viewBox="0 0 240 240">${gauge(120, 120, 100, { from: 135, to: 405, segments: 9, width: 12, tail: false })}${hNeedle(120, 120, 132, fg)}</svg>`,
+        },
+        {
+          name: "3 · Escudo",
+          tag: "Defesa do motorista",
+          desc: "O velocímetro dentro de um escudo, reforçando a ideia de defesa e proteção da CNH, mantendo as cores e o H da marca.",
+          art: (fg) => `<svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg">
+              ${shield(120, 120, 196, 224)}
+              ${gauge(120, 112, 66, { from: 180, to: 360, segments: 5, width: 9, tail: false })}
+              ${hNeedle(120, 128, 104, fg)}
+              ${wordmark(258, 140, fg)}
+            </svg>`,
+          icon: (fg) => `<svg viewBox="0 0 240 240">${shield(120, 120, 196, 224)}${gauge(120, 112, 66, { from: 180, to: 360, segments: 5, width: 9, tail: false })}${hNeedle(120, 128, 104, fg)}</svg>`,
+        },
+      ];
+
+      const NAVY = "#0B1622";
+      document.getElementById("app").innerHTML =
+        CONCEPTS.map(
+          (c) => `
+        <section class="concept">
+          <div class="concept-head"><div><h2>${c.name}</h2><span>${c.desc}</span></div><span class="tag">${c.tag}</span></div>
+          <div class="boards">
+            <div class="board dark">${c.art("#FFFFFF")}</div>
+            <div class="board light">${c.art(NAVY)}</div>
+          </div>
+          <div class="uses">
+            <div class="chip">${c.icon("#FFFFFF")}</div>
+            <div class="chip round">${c.icon("#FFFFFF")}</div>
+            <div class="chip white">${c.icon(NAVY)}</div>
+            Ícone reduzido: favicon, foto de perfil e app.
+          </div>
+        </section>`,
+        ).join("") +
+        `<p class="note">Propostas conceituais para escolha. Depois de definida, a versão final é entregue em vetor (SVG/PDF) com o texto convertido em curvas e as versões horizontal, vertical e ícone.</p>`;
+    </script>
+  </body>
+</html>

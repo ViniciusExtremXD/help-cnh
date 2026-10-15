@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Check, ChevronDown, Clock, Send } from "lucide-react";
+import { CaretDown, Check, Clock, PaperPlaneTilt } from "@phosphor-icons/react";
 import { waLink } from "../config";
 import { PHOTOS } from "../data/photos";
 import { Button } from "./ui/Button";
@@ -33,7 +33,7 @@ export function Contact() {
   return (
     <section id="contato" className="relative isolate overflow-hidden bg-navy-900 py-20 sm:py-28">
       <Photo
-        id={PHOTOS.highwayAerial}
+        id={PHOTOS.spDusk}
         alt=""
         widths={[960, 1440, 1920]}
         className="absolute inset-0 -z-10 h-full w-full object-cover opacity-30"
@@ -43,7 +43,7 @@ export function Contact() {
       <div className="container-x grid items-center gap-12 lg:grid-cols-[1fr_0.95fr] lg:gap-20">
         <RevealGroup>
           <motion.p variants={fadeUp} className="kicker-dark">
-            <Clock size={14} />
+            <Clock size={16} weight="bold" />
             Prazo correndo
           </motion.p>
           <motion.h2
@@ -60,7 +60,7 @@ export function Contact() {
             {PERKS.map((p) => (
               <li key={p} className="flex items-center gap-3 text-[15px] font-medium text-slate-200">
                 <span className="grid h-6 w-6 place-items-center rounded-full bg-brand-500 text-navy-900">
-                  <Check size={14} strokeWidth={3} />
+                  <Check size={14} weight="bold" />
                 </span>
                 {p}
               </li>
@@ -106,7 +106,7 @@ function LeadForm() {
             className="flex min-h-[380px] flex-col items-center justify-center text-center"
           >
             <span className="grid h-16 w-16 place-items-center rounded-full bg-brand-500 text-navy-900">
-              <Check size={30} strokeWidth={3} />
+              <Check size={30} weight="bold" />
             </span>
             <p className="mt-6 font-display text-2xl font-bold text-navy-900">Tudo certo, {name.split(" ")[0]}!</p>
             <p className="mt-2 max-w-xs text-slate-600">
@@ -168,8 +168,9 @@ function LeadForm() {
                     </option>
                   ))}
                 </select>
-                <ChevronDown
+                <CaretDown
                   size={18}
+                  weight="bold"
                   className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-slate-500"
                 />
               </span>
@@ -181,7 +182,7 @@ function LeadForm() {
               </p>
             )}
 
-            <Button type="submit" icon={Send} className="w-full">
+            <Button type="submit" icon={PaperPlaneTilt} className="w-full">
               Analisar meu caso no WhatsApp
             </Button>
             <p className="text-center text-xs text-slate-400">
