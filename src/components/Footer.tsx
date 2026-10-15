@@ -1,5 +1,5 @@
 import { ArrowUp, MapPin, ShieldCheck, WhatsappLogo } from "@phosphor-icons/react";
-import { ADDRESS, NAV_LINKS, waLink } from "../config";
+import { ADDRESS, COVERAGE, NAV_LINKS, waLink } from "../config";
 import { Logo } from "./Logo";
 
 const SERVICES = [
@@ -69,7 +69,7 @@ export function Footer() {
             </li>
             <li className="flex items-center gap-3">
               <MapPin size={18} weight="fill" className="shrink-0 text-brand-400" />
-              {ADDRESS.street}, {ADDRESS.city} · atendimento digital em todo o Brasil
+              {ADDRESS.street}, {ADDRESS.city} · atendimento em {COVERAGE}
             </li>
             <li className="flex items-center gap-3">
               <ShieldCheck size={18} weight="fill" className="shrink-0 text-brand-400" />

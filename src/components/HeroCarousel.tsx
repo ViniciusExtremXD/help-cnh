@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState, type ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowDown, CaretLeft, CaretRight, CheckCircle, Pause, Play } from "@phosphor-icons/react";
-import { waLink } from "../config";
+import { COVERAGE, waLink } from "../config";
 import { PHOTOS, photoSrcSet, photoUrl } from "../data/photos";
 import { Button } from "./ui/Button";
 import { Photo } from "./ui/Photo";
@@ -73,7 +73,7 @@ const SLIDES: Slide[] = [
   },
 ];
 
-const TRUST = ["Atendimento em todo o Brasil", "Sem juridiquês", "Andamento pelo WhatsApp"];
+const TRUST = [`Atendimento em ${COVERAGE}`, "Sem juridiquês", "Andamento pelo WhatsApp"];
 
 export function HeroCarousel() {
   const [index, setIndex] = useState(0);

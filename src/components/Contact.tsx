@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CaretDown, Check, Clock, PaperPlaneTilt } from "@phosphor-icons/react";
-import { waLink } from "../config";
+import { COVERAGE, waLink } from "../config";
 import { PHOTOS } from "../data/photos";
 import { Button } from "./ui/Button";
 import { Photo } from "./ui/Photo";
@@ -16,7 +16,7 @@ const PROBLEMS = [
   "Outras Multas",
 ];
 
-const PERKS = ["Análise inicial sem compromisso", "Resposta rápida pelo WhatsApp", "Atendimento em todo o Brasil"];
+const PERKS = ["Análise inicial sem compromisso", "Resposta rápida pelo WhatsApp", `Atendimento em ${COVERAGE}`];
 
 function maskPhone(v: string) {
   const d = v.replace(/\D/g, "").slice(0, 11);

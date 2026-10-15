@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Clock, List, MapPin, ShieldCheck, WhatsappLogo, X } from "@phosphor-icons/react";
-import { NAV_LINKS, waLink } from "../config";
+import { COVERAGE, NAV_LINKS, waLink } from "../config";
 import { Logo } from "./Logo";
 import { Button } from "./ui/Button";
 
@@ -39,7 +39,7 @@ export function Header() {
           <div className="flex items-center gap-6">
             <span className="inline-flex items-center gap-2">
               <MapPin size={15} weight="fill" className="text-brand-400" />
-              Atendimento em todo o Brasil
+              Atendimento em {COVERAGE}
             </span>
             <span className="hidden items-center gap-2 lg:inline-flex">
               <ShieldCheck size={15} weight="fill" className="text-brand-400" />

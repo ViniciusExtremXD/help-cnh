@@ -8,6 +8,17 @@ export function waLink(message: string = DEFAULT_MESSAGE) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
 
+// Região de atuação informada pelo cliente (grupo de WhatsApp, 15/10/2026).
+export const COVERAGE = "São Paulo e Grande São Paulo";
+export const REGIONS = [
+  "São Paulo",
+  "São Bernardo do Campo",
+  "Diadema",
+  "Mauá",
+  "Osasco",
+  "Campinas",
+] as const;
+
 // TODO: endereço provisório (o mapa aponta para a Av. Paulista até o cliente confirmar a localização).
 export const ADDRESS = {
   street: "Avenida Paulista",

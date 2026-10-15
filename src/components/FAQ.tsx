@@ -23,7 +23,7 @@ const FAQS = [
   },
   {
     q: "Para quem é destinado o serviço da Help Soluções em CNH?",
-    a: "Para qualquer motorista, em todo o território nacional, que precise de auxílio rápido, defesa técnica e desburocratização em problemas com CNH, multas ou restrições veiculares — inclusive quem trabalha dirigindo e não pode correr o risco de parar.",
+    a: "Para motoristas de São Paulo e da Grande São Paulo que precisem de auxílio rápido, defesa técnica e desburocratização em problemas com CNH, multas ou restrições veiculares — inclusive quem trabalha dirigindo e não pode correr o risco de parar.",
   },
   {
     q: "Quais documentos são necessários para iniciar minha defesa?",

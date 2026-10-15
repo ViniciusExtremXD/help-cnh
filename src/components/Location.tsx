@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowSquareOut, Clock, MapPinLine, Monitor, type Icon } from "@phosphor-icons/react";
-import { ADDRESS, waLink } from "../config";
+import { ADDRESS, COVERAGE, REGIONS, waLink } from "../config";
 import { Button } from "./ui/Button";
 import { IconBadge, type IconMotion } from "./ui/IconBadge";
 import { Reveal, RevealGroup, fadeUp } from "./ui/Reveal";
@@ -12,7 +12,7 @@ const OPEN = `https://www.google.com/maps/search/?api=1&query=${q}`;
 
 const INFO: { icon: Icon; motion: IconMotion; title: string; text: string }[] = [
   { icon: MapPinLine, motion: "lift", title: "Endereço", text: `${ADDRESS.street} — ${ADDRESS.city}` },
-  { icon: Monitor, motion: "pop", title: "Atendimento digital", text: "Para motoristas de todo o Brasil, pelo WhatsApp." },
+  { icon: Monitor, motion: "pop", title: "Região de atuação", text: `${COVERAGE}, com acompanhamento pelo WhatsApp.` },
   { icon: Clock, motion: "spin", title: "Resposta rápida", text: "Envie sua notificação e receba a primeira análise." },
 ];
 
@@ -23,7 +23,7 @@ export function Location() {
         <div>
           <SectionTitle
             kicker="Onde estamos"
-            title="Atendimento próximo, de onde você estiver."
+            title="Atendimento em São Paulo e Grande São Paulo."
             text="Fale com a gente pelo WhatsApp ou agende uma conversa no nosso endereço em São Paulo."
           />
           <RevealGroup className="mt-8 space-y-2">
@@ -41,6 +41,19 @@ export function Location() {
               </motion.div>
             ))}
           </RevealGroup>
+          <Reveal delay={0.1} className="mt-6">
+            <p className="text-sm font-semibold text-navy-900">Cidades atendidas</p>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {REGIONS.map((r) => (
+                <li
+                  key={r}
+                  className="rounded-full border border-slate-200 bg-slate-50 px-3.5 py-1.5 text-[13px] font-medium text-slate-700"
+                >
+                  {r}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
           <Reveal delay={0.2} className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button href={waLink("Olá! Gostaria de agendar um atendimento.")} external icon="whatsapp">
               Agendar atendimento
