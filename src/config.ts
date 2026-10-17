@@ -1,6 +1,12 @@
 // TODO: substituir pelo número oficial de WhatsApp da Help Soluções em CNH (formato: 55 + DDD + número).
 export const WHATSAPP_NUMBER = "5500000000000";
 
+// Domínio oficial (registrado na Hostinger em 17/10/2026).
+export const SITE_URL = "https://help-cnh.com.br";
+
+// TODO: preencher com o ID do contêiner do Google Tag Manager (formato GTM-XXXXXXX) quando ele for criado.
+export const GTM_ID = "";
+
 export const DEFAULT_MESSAGE =
   "Olá, Help Soluções em CNH! Gostaria de uma análise do meu caso.";
 

@@ -2,6 +2,7 @@ import { useState, type FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CaretDown, Check, Clock, PaperPlaneTilt } from "@phosphor-icons/react";
 import { COVERAGE, waLink } from "../config";
+import { track } from "../lib/analytics";
 import { PHOTOS } from "../data/photos";
 import { Button } from "./ui/Button";
 import { Photo } from "./ui/Photo";
@@ -89,6 +90,7 @@ function LeadForm() {
     if (phone.replace(/\D/g, "").length < 10) return setError("Informe um WhatsApp válido com DDD.");
     if (!problem) return setError("Selecione o tipo de problema.");
     setError("");
+    track({ event: "lead_form_submit", problem_type: problem });
     const msg = `Olá! Meu nome é ${name.trim()}. Meu WhatsApp é ${phone}. Preciso de ajuda com: ${problem}.`;
     window.open(waLink(msg), "_blank", "noopener,noreferrer");
     setSent(true);
